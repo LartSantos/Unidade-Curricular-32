@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Acervo</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Sistema de Biblioteca</h1>
+
+    <nav>
+        <a href="{{ url_for('inicio') }}">Início</a>
+        <a href="{{ url_for('cadastro') }}">Cadastrar livro</a>
+        <a href="{{ url_for('acervo') }}">Acervo</a>
+    </nav>
+
+</header>
+
+<main>
+
+    <h2>Acervo da Biblioteca</h2>
+
+    {% if livros %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Categoria</th>
+                    <th>Ano</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for livro in livros %}
+
+                    <tr>
+
+                        <td>
+                            {{ livro['titulo'] }}
+                        </td>
+
+                        <td>
+                            {{ livro['autor'] }}
+                        </td>
+
+                        <td>
+                            {{ livro['categoria'] }}
+                        </td>
+
+                        <td>
+                            {{ livro['ano_publicacao'] }}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    {% else %}
+
+        <p>
+            Nenhum livro cadastrado.
+        </p>
+
+    {% endif %}
+
+</main>
+
+</body>
+
+</html>
